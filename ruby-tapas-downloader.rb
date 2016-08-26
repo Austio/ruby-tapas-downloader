@@ -1,10 +1,10 @@
 require 'watir'
 require 'fileutils'
 require 'open-uri'
-require './constants'
-require './lib/login_page'
-require './lib/home_page'
-require './lib/episode_page'
+require_relative './constants'
+require_relative './lib/login_page'
+require_relative './lib/home_page'
+require_relative './lib/episode_page'
 
 
 class RubyTapasDownloader
