@@ -1,3 +1,7 @@
+# Updates
+Make sure your selinum-webdriver is at version 3
+https://github.com/mozilla/geckodriver/releases download this and put it somewhere in your path
+
 # ruby-tapas-downloader
 RubyTapas 2.0 download
 

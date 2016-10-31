@@ -1,16 +1,20 @@
-require 'watir'
+require 'watir-webdriver'
 require 'fileutils'
 require 'open-uri'
 require_relative './constants'
-require_relative './lib/login_page'
-require_relative './lib/home_page'
-require_relative './lib/episode_page'
-
+require_relative './lib/pages/login_page'
+require_relative './lib/pages/episode_page'
+require_relative './lib/pages/episodes_page'
+require_relative './lib/extractors/save_content_html'
+require_relative './lib/extractors/save_page_source'
+require_relative './lib/extractors/save_video'
 
 class RubyTapasDownloader
   def call
-    login
-    download_latest_episode
+    create_save_dir { log_status_update('SETUP DIRECTORY') }
+    login { log_status_update('LOGGING IN')}
+    get_episode_links { log_status_update('LISTING ALL EPISODES IN CATALOG') }
+    download_missing_episodes { log_status_update('DOWNLOADING MISSING EPISODES') }
 
   ensure
     browser.close
@@ -22,19 +26,28 @@ class RubyTapasDownloader
     @browser ||= Watir::Browser.new
   end
 
+  def create_save_dir
+    FileUtils::mkdir_p SAVE_DIRECTORY
+  end
+
   def login
-    log_status_update('LOGGING IN')
+    yield if block_given?
+
     LoginPage.new(browser).login
   end
 
-  def latest_episode_url
-    log_status_update('GETTING LATEST EPISODE URL')
-    HomePage.new(browser).get_featured_url
+  def get_episode_links
+    yield if block_given?
+
+    @get_episode_links ||= EpisodesPage.new(browser).get_episode_links
   end
 
-  def download_latest_episode
-    log_status_update('DOWNLOADING LATEST EPISODE')
-    EpisodePage.new(browser, latest_episode_url).download_episode
+  def download_missing_episodes
+    yield if block_given?
+
+    get_episode_links.each do |link_obj|
+      EpisodePage.new(browser, link_obj).download_episode
+    end
   end
 end
 
