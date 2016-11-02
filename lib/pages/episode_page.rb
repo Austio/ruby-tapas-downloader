@@ -8,6 +8,8 @@ class EpisodePage < Struct.new(:link_obj, :browser)
 
     login_if_needed
 
+    # wait for the login and page to be ready for us
+    sleep 5
     save_full_html
     save_content_html
     save_video
@@ -16,7 +18,7 @@ class EpisodePage < Struct.new(:link_obj, :browser)
   end
 
   def login_if_needed
-    if browser.include? "You don't have access to this page"
+    if browser.html.include? "You don't have access to this page"
       LoginPage.new(browser).submit_login
     end
   end
