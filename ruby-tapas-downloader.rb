@@ -38,7 +38,7 @@ class RubyTapasDownloader
       href = link.href
       log_status_update(href)
 
-      EpisodeLink.new(href, BROWSER).call
+      EpisodeLink.new(href).call
     end
   end
 end
