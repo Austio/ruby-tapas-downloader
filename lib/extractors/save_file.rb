@@ -4,17 +4,17 @@ class SaveFile < Struct.new(:browser, :episode_directory)
     create_save_directory
 
     File.open(file_path, 'w') do |f|
-      f << file
+      f.write data
     end
   end
 
   private
 
-  def file
+  def data
     raise 'implement a way to get the file we want'
   end
 
-  def file_name
+  def data_name
     raise 'implement a name for the file'
   end
 
@@ -29,6 +29,6 @@ class SaveFile < Struct.new(:browser, :episode_directory)
   end
 
   def file_path
-    "#{save_directory}/#{file_name}"
+    "#{save_directory}/#{data_name}"
   end
 end

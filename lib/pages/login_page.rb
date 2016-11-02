@@ -2,11 +2,15 @@ class LoginPage < Struct.new(:browser)
   def login
     browser.goto login_url
 
+    submit_login
+
+    browser
+  end
+
+  def submit_login
     fill_in_username
     fill_in_password
     click_submit
-
-    browser
   end
 
   private

@@ -1,12 +1,24 @@
-class EpisodePage < Struct.new(:browser, :link_obj)
+require_relative '../pages/login_page'
+
+class EpisodePage < Struct.new(:link_obj, :browser)
 
   def download_episode
     return if episode_exists?
     browser.goto episode_url
 
+    login_if_needed
+
     save_full_html
     save_content_html
     save_video
+
+    browser
+  end
+
+  def login_if_needed
+    if browser.include? "You don't have access to this page"
+      LoginPage.new(browser).submit_login
+    end
   end
 
   def episode_exists?
