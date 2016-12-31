@@ -19,7 +19,7 @@ class EpisodeLink < Struct.new(:href)
   end
 
   def episode_regex
-    @episode_regex ||= href.match(/(episode-)(?<episode_number>\d{3})(-)(?<episode_name>.*)/)
+    @episode_regex ||= href.match(/(episode-)(?<episode_number>\d{3})(-?)(?<episode_name>.*)/)
   end
 
   def link_obj
