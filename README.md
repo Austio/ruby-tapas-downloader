@@ -18,8 +18,8 @@ Steps
 The downloader will put your episodes in this format
 
 ````
-  /RubyTapas
+  /RubyTapas (as defined in your constants.rb file)
    /EPISODE_TITLE_FROM_RUBYTAPAS
-     /episode.mp4       #ideo episode
+     /episode.mp4       #video episode
      /full_page.html    #page html with all links
      /page_content.hrml #page_content div from page
