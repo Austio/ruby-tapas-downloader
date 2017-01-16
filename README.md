@@ -13,6 +13,7 @@ Steps
 2. Copy the `constants.rb.example` file to `constants.rb`
 3. Fill out constants.rb with your:
    - your username and password
+   - optional: use a number of the episode from which you want to start the download 
    - optional: a different directory if you don't want the default RubyTapas
    - if your encounter certificate failure, download the ca-bundrle.crt from below and
    change the CA_FILE to eg.'lib/ca-bundle.crt'

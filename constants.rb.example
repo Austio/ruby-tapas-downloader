@@ -1,6 +1,7 @@
 USER_NAME = ''
 USER_PASSWORD = ''
 
+ALREADY_DOWNLOADED = '' # number of episodes you already downloaded (maybe saved elsewhere)
 CA_FILE = '' # on windows you might need to use the cert file
 
 SAVE_DIRECTORY = 'RubyTapas'
