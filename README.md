@@ -10,10 +10,12 @@ Web scraper for gathering and arranging new rubytapas content
 Steps
 
 1. gem install 'watir'
-2. Fill out constants.rb with your
-  a. your username and password
-  b. optional: a different directory if you don't want the default RubyTapas
-3. in terminal run `ruby ruby-tapas-downloader`
+2. Copy the `constants.rb.example` file to `constants.rb`
+3. Fill out constants.rb with your:
+   - your username and password
+   - optional: a different directory if you don't want the default RubyTapas
+
+4. In a terminal run `ruby ruby-tapas-downloader`
 
 The downloader will put your episodes in this format
 
