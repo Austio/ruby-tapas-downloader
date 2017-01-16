@@ -8,6 +8,6 @@ class LoggedBrowser
   end
 
   def browser
-    @browser ||= Watir::Browser.new
+    @browser ||= Watir::Browser.new(:chrome)
   end
 end

@@ -3,7 +3,7 @@ class SaveFile < Struct.new(:browser, :episode_directory)
   def call
     create_save_directory
 
-    File.open(file_path, 'w') do |f|
+    File.open(file_path, 'wb') do |f|
       f.write data
     end
   end

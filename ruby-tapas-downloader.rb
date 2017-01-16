@@ -9,6 +9,7 @@ require_relative './lib/extractors/save_content_html'
 require_relative './lib/extractors/save_page_source'
 require_relative './lib/extractors/save_video'
 require 'pry'
+require 'net/https'
 
 BROWSER = LoggedBrowser.new.call
 
@@ -45,6 +46,20 @@ end
 
 def log_status_update(update)
   puts "--- #{update} ---"
+end
+
+unless (CA_FILE.nil? || CA_FILE.empty?) then
+  module Net
+    class HTTP
+      alias_method :original_use_ssl=, :use_ssl=
+
+      def use_ssl=(flag)
+        self.ca_file = CA_FILE
+        self.verify_mode = OpenSSL::SSL::VERIFY_PEER
+        self.original_use_ssl = flag
+      end
+    end
+  end
 end
 
 RubyTapasDownloader.new.call

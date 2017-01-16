@@ -1,5 +1,7 @@
 USER_NAME = ''
 USER_PASSWORD = ''
 
+CA_FILE = '' # on windows you might need to use the cert file
+
 SAVE_DIRECTORY = 'RubyTapas'
 TAPAS_BASE_URL = 'https://www.rubytapas.com'
