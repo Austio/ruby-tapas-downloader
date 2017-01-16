@@ -1,3 +1,4 @@
 .idea/
 RubyTapas/
+lib/ca-bundle.crt
 constants.rb
