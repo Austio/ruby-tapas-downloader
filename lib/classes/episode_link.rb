@@ -4,15 +4,15 @@ require_relative '../extractors/save_video'
 require_relative '../pages/episode_page'
 
 class EpisodeLink < Struct.new(:href)
-  def call
+  def call(browser)
     return unless is_episode?
     return if is_downloaded?
 
-    download_episode
+    download_episode(browser)
   end
 
-  def download_episode
-    EpisodePage.new(link_obj).download_episode
+  def download_episode(browser)
+    EpisodePage.new(link_obj).download_episode(browser)
   end
 
   def is_downloaded?

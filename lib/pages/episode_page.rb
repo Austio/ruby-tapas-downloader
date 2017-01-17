@@ -4,10 +4,12 @@ require_relative '../classes/logged_browser'
 class EpisodePage < Struct.new(:link_obj)
 
   def browser
-    @browser ||= LoggedBrowser.new.call
+    @browser
   end
 
-  def download_episode
+  def download_episode(given_browser)
+    @browser = given_browser
+
     return if episode_exists?
     browser.goto episode_url
 
@@ -18,8 +20,6 @@ class EpisodePage < Struct.new(:link_obj)
     save_full_html
     save_content_html
     save_video
-
-    browser.close
   end
 
   def login_if_needed

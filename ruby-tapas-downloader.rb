@@ -35,12 +35,15 @@ class RubyTapasDownloader
   def download_missing_episodes
     yield if block_given?
 
+    browser = LoggedBrowser.new.call
+
     get_episode_links.each do |link|
       href = link.href
       log_status_update(href)
 
-      EpisodeLink.new(href).call
+      EpisodeLink.new(href).call(browser)
     end
+    browser.close
   end
 end
 
