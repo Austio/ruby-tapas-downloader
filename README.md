@@ -1,6 +1,10 @@
 # Updates
 Make sure your selinum-webdriver is at version 3
-https://github.com/mozilla/geckodriver/releases download this and put it somewhere in your path
+Which means for Firefox, Chrome, IE the following webdrivers respectively 
+https://github.com/mozilla/geckodriver/releases 
+http://chromedriver.storage.googleapis.com/index.html 
+http://selenium-release.storage.googleapis.com/index.html?path=3.0/
+download the latest version and put it into your PATH
 
 # ruby-tapas-downloader
 RubyTapas 2.0 download
@@ -9,10 +13,11 @@ Web scraper for gathering and arranging new rubytapas content
 
 Steps
 
-1. gem install 'watir'
+1. gem install 'watir'; gem install 'pry'
 2. Copy the `constants.rb.example` file to `constants.rb`
 3. Fill out constants.rb with your:
    - your username and password
+   - optional: browser for the automated run 
    - optional: use a number of the episode from which you want to start the download 
    - optional: a different directory if you don't want the default RubyTapas
    - if your encounter certificate failure, download the ca-bundrle.crt from below and
