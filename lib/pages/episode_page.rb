@@ -4,11 +4,10 @@ require_relative '../classes/logged_browser'
 class EpisodePage < Struct.new(:link_obj)
 
   def browser
-    @browser
+    BROWSER
   end
 
-  def download_episode(given_browser)
-    @browser = given_browser
+  def download_episode
 
     return if episode_exists?
     browser.goto episode_url
@@ -24,7 +23,7 @@ class EpisodePage < Struct.new(:link_obj)
 
   def login_if_needed
     if browser.html.include? "You don't have access to this page"
-      LoginPage.new(browser).submit_login
+      LoginPage.new.submit_login
     end
   end
 
