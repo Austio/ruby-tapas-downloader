@@ -18,6 +18,8 @@ class RubyTapasDownloader
     create_save_dir { log_status_update('SETUP DIRECTORY') }
     get_episode_links { log_status_update('LISTING ALL EPISODES IN CATALOG') }
     download_missing_episodes { log_status_update('DOWNLOADING MISSING EPISODES') }
+  ensure
+    BROWSER.close
   end
 
   private
@@ -35,10 +37,8 @@ class RubyTapasDownloader
   def download_missing_episodes
     yield if block_given?
 
-    get_episode_links.each do |link|
-      href = link.href
+    get_episode_links.map(&:href).each do |href|
       log_status_update(href)
-
       EpisodeLink.new(href).call
     end
   end
