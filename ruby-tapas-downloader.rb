@@ -1,4 +1,4 @@
-require 'watir'
+require 'watir-webdriver'
 require 'fileutils'
 require 'open-uri'
 require_relative './constants'
@@ -60,6 +60,10 @@ unless (CA_FILE.nil? || CA_FILE.empty?) then
       end
     end
   end
+end
+
+if defined?(SKIP_SSL_VERIFY) && SKIP_SSL_VERIFY
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 end
 
 RubyTapasDownloader.new.call

@@ -7,3 +7,7 @@ CA_FILE = '' # on windows you might need to use the cert file
 
 SAVE_DIRECTORY = 'RubyTapas'
 TAPAS_BASE_URL = 'https://www.rubytapas.com'
+
+# Set to true to not have to deal with OpenSSL::SSL::SSLERROR on windows
+# http://stackoverflow.com/questions/5711190/how-to-get-rid-of-opensslsslsslerror
+SKIP_SSL_VERIFY = false
