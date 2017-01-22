@@ -1,17 +1,13 @@
 require_relative './save_file'
 
 class SaveVideo < SaveFile
-  def call
-    create_save_directory
-
-    File.open(file_path, 'wb') do |f|
-      f << open(data).read
-    end
-  end
-
   private
 
   def data
+    open(video_href).read
+  end
+
+  def video_href
     links = browser.links
     video_link = links.find{|a| a.html.match video_link_regex}
     video_link.href
