@@ -2,3 +2,4 @@
 RubyTapas/
 lib/ca-bundle.crt
 constants.rb
+error.log

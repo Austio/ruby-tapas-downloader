@@ -2,37 +2,48 @@ require_relative '../pages/login_page'
 require_relative '../classes/logged_browser'
 
 class EpisodePage < Struct.new(:link_obj)
-
   def browser
     BROWSER
   end
 
   def download_episode
-
     return if episode_exists?
     browser.goto episode_url
-
     login_if_needed
 
-    # wait for the login and page to be ready for us
-    sleep 5
     save_full_html
     save_content_html
     save_video
   end
 
   def login_if_needed
-    if browser.html.include? "You don't have access to this page"
-      LoginPage.new.submit_login
+    if browser.forms.any? { |f| f.text && f.text.downcase.include?('password') }
+      LoginPage.new(browser).submit_login
+      sleep 10 #TODO(use Watir::Wait)
     end
   end
 
   def episode_exists?
-    Dir.entries("#{SAVE_DIRECTORY}").detect{|e| e.include?(link_obj[:episode_number])}
+    return false unless Dir.exists?(save_directory)
+    return true if all_episode_files_have_data?
+
+    false
   end
 
   def save_directory
-    "#{SAVE_DIRECTORY}/#{episode_title}"
+    @save_directory = File.join(SAVE_DIRECTORY, episode_title)
+  end
+
+  def all_episode_files_have_data?
+
+    Dir.entries(save_directory).all? do |f|
+      path = File.join(save_directory, f)
+
+      # skip . and ..
+      return true unless File.file?(path)
+
+      File.stat(path).size > 0
+    end
   end
 
   def episode_url

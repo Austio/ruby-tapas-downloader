@@ -18,6 +18,15 @@ class RubyTapasDownloader
     create_save_dir { log_status_update('SETUP DIRECTORY') }
     get_episode_links { log_status_update('LISTING ALL EPISODES IN CATALOG') }
     download_missing_episodes { log_status_update('DOWNLOADING MISSING EPISODES') }
+  rescue => e
+    errors = e.backtrace.push(BROWSER.html)
+
+    File.open('error.log', 'w+') do |f|
+      errors.each do |line|
+        f << line
+        f << "\n"
+      end
+    end
   ensure
     BROWSER.close
   end
