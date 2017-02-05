@@ -6,7 +6,7 @@ require_relative '../pages/episode_page'
 class EpisodeLink < Struct.new(:href)
   def call
     return unless is_episode?
-    return if is_downloaded?
+    return if manually_set_to_not_download_in_constants?
 
     download_episode
   end
@@ -15,8 +15,8 @@ class EpisodeLink < Struct.new(:href)
     EpisodePage.new(link_obj).download_episode
   end
 
-  def is_downloaded?
-    @episode_regex[:episode_number].to_i <= ALREADY_DOWNLOADED.to_i
+  def manually_set_to_not_download_in_constants?
+    episode_regex[:episode_number].to_i <= ALREADY_DOWNLOADED.to_i
   end
 
   def is_episode?
