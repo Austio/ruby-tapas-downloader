@@ -13,16 +13,15 @@ Web scraper for gathering and arranging new rubytapas content
 
 Steps
 
-1. gem install 'watir'; gem install 'pry'
-2. Copy the `constants.rb.example` file to `constants.rb`
-3. Fill out constants.rb with your:
+1. Copy the `constants.rb.example` file to `constants.rb`
+2. Fill out constants.rb with your:
    - your username and password
    - optional: browser for the automated run 
    - optional: use a number of the episode from which you want to start the download 
    - optional: a different directory if you don't want the default RubyTapas
    - if your encounter certificate failure, download the ca-bundrle.crt from below and
    change the CA_FILE to eg.'lib/ca-bundle.crt'
-4. In a terminal run `ruby ruby-tapas-downloader`
+3. In a terminal run `ruby ruby-tapas-downloader`
 
 The downloader will put your episodes in this format
 
