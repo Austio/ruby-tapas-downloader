@@ -1,6 +1,9 @@
-require 'watir-webdriver'
+require 'watir'
 require 'fileutils'
 require 'open-uri'
+require 'pry'
+require 'net/https'
+
 require_relative './constants'
 require_relative './lib/pages/login_page'
 require_relative './lib/pages/episode_page'
@@ -8,8 +11,6 @@ require_relative './lib/pages/episodes_page'
 require_relative './lib/extractors/save_content_html'
 require_relative './lib/extractors/save_page_source'
 require_relative './lib/extractors/save_video'
-require 'pry'
-require 'net/https'
 
 BROWSER = LoggedBrowser.new.call
 
