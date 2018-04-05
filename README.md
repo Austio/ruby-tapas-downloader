@@ -1,10 +1,9 @@
 # Updates
-Make sure your selinum-webdriver is at version 3
-Which means for Firefox, Chrome, IE the following webdrivers respectively 
-https://github.com/mozilla/geckodriver/releases 
-http://chromedriver.storage.googleapis.com/index.html 
-http://selenium-release.storage.googleapis.com/index.html?path=3.0/
-download the latest version and put it into your PATH
+Make sure your selinum-webdriver is at version 3 and that you have the relevant browser driver in your PATH
+
+ - Firefox: https://github.com/mozilla/geckodriver/releases 
+ - Chrome: http://chromedriver.storage.googleapis.com/index.html 
+ - Selenium http://selenium-release.storage.googleapis.com/index.html?path=3.0/
 
 # ruby-tapas-downloader
 RubyTapas 2.0 download
