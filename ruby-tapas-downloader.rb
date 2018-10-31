@@ -20,6 +20,7 @@ class RubyTapasDownloader
     get_episode_links { log_status_update('LISTING ALL EPISODES IN CATALOG') }
     download_missing_episodes { log_status_update('DOWNLOADING MISSING EPISODES') }
   rescue => e
+    log_status_update('ERROR check log file')
     errors = e.backtrace.push(BROWSER.html)
 
     File.open('error.log', 'w+') do |f|
@@ -47,9 +48,9 @@ class RubyTapasDownloader
   def download_missing_episodes
     yield if block_given?
 
-    get_episode_links.map(&:href).each do |href|
-      log_status_update(href)
-      EpisodeLink.new(href).call
+    get_episode_links.map{|x| [x.href, x.text]}.each do |info|
+      log_status_update(info[0])
+      EpisodeLink.new(info[0], info[1]).call
     end
   end
 end
